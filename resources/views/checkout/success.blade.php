@@ -43,9 +43,14 @@
                 <span>Lanjut ke WhatsApp</span>
             </a>
 
-            <a href="{{ route('products.index') }}" class="block w-full py-3 bg-[#1B4332] text-white font-medium rounded-xl hover:bg-[#2D6A4F] transition-all duration-300">
-                Belanja Lagi
-            </a>
+            <div class="flex flex-col space-y-3">
+                <a href="{{ route('invoice.view', $order) }}" target="_blank" class="block w-full py-3 bg-[#1B4332] text-white font-medium rounded-xl hover:bg-[#2D6A4F] transition-all duration-300">
+                    Lihat Invoice
+                </a>
+                <a href="{{ route('products.index') }}" class="block w-full py-3 border border-[#1B4332] text-[#1B4332] font-medium rounded-xl hover:bg-gray-50 transition-all duration-300">
+                    Belanja Lagi
+                </a>
+            </div>
         </div>
     </div>
 </section>

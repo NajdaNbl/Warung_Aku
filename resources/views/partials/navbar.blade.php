@@ -29,6 +29,7 @@
                             <span>{{ Auth::user()->name }}</span>
                         </button>
                         <div x-show="profileOpen" @click.away="profileOpen = false" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border py-1 z-50">
+                            <a href="{{ route('orders.index') }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Pesanan Saya</a>
                             <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Edit Profil</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -56,6 +57,7 @@
             @auth
                 <hr class="my-2">
                 <a href="{{ route('admin.dashboard') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#1B4332]">Dashboard</a>
+                <a href="{{ route('orders.index') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#1B4332]">Pesanan Saya</a>
                 <a href="{{ route('profile.edit') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#1B4332]">Edit Profil</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

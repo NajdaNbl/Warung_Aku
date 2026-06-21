@@ -17,7 +17,7 @@
         <div class="grid md:grid-cols-2 gap-10">
             <div class="relative">
                 <div class="aspect-square rounded-2xl overflow-hidden bg-gray-100 shadow-lg">
-                    <img src="{{ $product->image ?: 'https://via.placeholder.com/600' }}" alt="{{ $product->name }}" class="w-full h-full object-cover" id="mainImage">
+                    <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover" id="mainImage">
                 </div>
                 <div class="absolute top-4 left-4 flex flex-col gap-2">
                     @if($product->is_best_seller)

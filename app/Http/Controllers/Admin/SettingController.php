@@ -13,12 +13,13 @@ class SettingController extends Controller
         $settings = [
             'store_name' => Setting::getValue('store_name', 'Warung Aku'),
             'wa_number' => Setting::getValue('wa_number', '621235331414'),
+            'wa_api_key' => Setting::getValue('wa_api_key', ''),
+            'wa_api_url' => Setting::getValue('wa_api_url', 'https://api.fonnte.com/send'),
             'address' => Setting::getValue('address', ''),
             'operational_hours' => Setting::getValue('operational_hours', '08.00 - 21.00'),
             'description' => Setting::getValue('description', 'Warung Aku adalah warung sembako yang menyediakan kebutuhan harian dengan harga bersahabat.'),
             'logo' => Setting::getValue('logo', ''),
             'banner' => Setting::getValue('banner', ''),
-            'admin_email' => Setting::getValue('admin_email', 'admin@warungaku.com'),
         ];
 
         return view('admin.settings.index', compact('settings'));
@@ -29,12 +30,13 @@ class SettingController extends Controller
         $data = $request->validate([
             'store_name' => 'required|max:255',
             'wa_number' => 'required|max:20',
+            'wa_api_key' => 'nullable|max:255',
+            'wa_api_url' => 'nullable|url|max:255',
             'address' => 'nullable',
             'operational_hours' => 'nullable|max:255',
             'description' => 'nullable',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'banner' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'admin_email' => 'nullable|email|max:255',
         ]);
 
         foreach ($data as $key => $value) {

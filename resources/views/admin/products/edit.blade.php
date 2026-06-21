@@ -38,7 +38,7 @@
             <label class="block text-sm font-medium text-gray-700 mb-2">Foto Produk</label>
             @if($product->image)
                 <div class="mb-3">
-                    <img src="{{ $product->image }}" alt="" class="w-24 h-24 rounded-lg object-cover border">
+                    <img src="{{ $product->image_url }}" alt="" class="w-24 h-24 rounded-lg object-cover border">
                 </div>
             @endif
             <input type="file" name="image" accept="image/*" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#D4A373] focus:border-transparent outline-none transition-all">

@@ -1,6 +1,6 @@
 <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
     <div class="relative overflow-hidden aspect-square">
-        <img src="{{ $product->image ?: 'https://via.placeholder.com/300' }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+        <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
         <div class="absolute top-3 left-3 flex flex-col gap-2">
             @if($product->is_best_seller)
                 <span class="bg-[#D4A373] text-white text-xs font-bold px-3 py-1 rounded-full shadow">Terlaris</span>

@@ -15,7 +15,7 @@ class SettingSeeder extends Seeder
             'address' => 'Jl. Contoh No. 123, Kota Contoh',
             'operational_hours' => '08.00 - 21.00',
             'description' => 'Warung Aku adalah warung sembako yang menyediakan kebutuhan harian dengan harga bersahabat.',
-            'admin_email' => 'admin@warungaku.com',
+
         ];
 
         foreach ($settings as $key => $value) {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -19,10 +20,15 @@ class CategoryController extends Controller
         $data = $request->validate([
             'name' => 'required|max:255|unique:categories',
             'description' => 'nullable',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'is_active' => 'nullable|boolean',
         ]);
 
         $data['is_active'] = $request->boolean('is_active', true);
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('categories', 'public');
+        }
 
         Category::create($data);
 
@@ -34,10 +40,18 @@ class CategoryController extends Controller
         $data = $request->validate([
             'name' => 'required|max:255|unique:categories,name,' . $category->id,
             'description' => 'nullable',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'is_active' => 'nullable|boolean',
         ]);
 
         $data['is_active'] = $request->boolean('is_active', true);
+
+        if ($request->hasFile('image')) {
+            if ($category->image) {
+                Storage::disk('public')->delete($category->image);
+            }
+            $data['image'] = $request->file('image')->store('categories', 'public');
+        }
 
         $category->update($data);
 
@@ -48,6 +62,9 @@ class CategoryController extends Controller
     {
         if ($category->products()->exists()) {
             return back()->with('error', 'Kategori tidak dapat dihapus karena masih memiliki produk.');
+        }
+        if ($category->image) {
+            Storage::disk('public')->delete($category->image);
         }
         $category->delete();
 

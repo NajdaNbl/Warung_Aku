@@ -29,11 +29,6 @@
             <textarea name="description" rows="4" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#D4A373] focus:border-transparent outline-none transition-all">{{ old('description', $settings['description']) }}</textarea>
         </div>
         <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Email Admin</label>
-            <input type="email" name="admin_email" value="{{ old('admin_email', $settings['admin_email']) }}" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#D4A373] focus:border-transparent outline-none transition-all">
-            <p class="text-xs text-gray-400 mt-1">Hanya pengguna dengan email ini yang bisa mengakses halaman admin.</p>
-        </div>
-        <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Logo</label>
             <input type="file" name="logo" accept="image/*" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#D4A373] focus:border-transparent outline-none transition-all">
         </div>
@@ -41,6 +36,20 @@
             <label class="block text-sm font-medium text-gray-700 mb-2">Banner</label>
             <input type="file" name="banner" accept="image/*" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#D4A373] focus:border-transparent outline-none transition-all">
         </div>
+
+        <hr class="border-gray-200">
+
+        <h3 class="font-semibold text-[#1B4332]">Notifikasi WhatsApp</h3>
+        <p class="text-xs text-gray-400">Dapatkan notifikasi otomatis saat ada pesanan baru. Daftar API key di <a href="https://fonnte.com" target="_blank" class="text-[#D4A373] hover:underline">fonnte.com</a></p>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">API Key WhatsApp</label>
+            <input type="text" name="wa_api_key" value="{{ old('wa_api_key', $settings['wa_api_key'] ?? '') }}" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#D4A373] focus:border-transparent outline-none transition-all">
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">API URL (opsional)</label>
+            <input type="text" name="wa_api_url" value="{{ old('wa_api_url', $settings['wa_api_url'] ?? '') }}" placeholder="https://api.fonnte.com/send" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#D4A373] focus:border-transparent outline-none transition-all">
+        </div>
+
         <div class="pt-4 border-t border-gray-100">
             <button type="submit" class="w-full sm:w-auto px-8 py-3 bg-[#1B4332] text-white font-medium rounded-xl hover:bg-[#2D6A4F] transition-colors">Simpan Pengaturan</button>
         </div>

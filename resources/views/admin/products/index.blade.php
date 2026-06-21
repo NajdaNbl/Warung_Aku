@@ -30,7 +30,7 @@
                         <td class="py-3 px-4">
                             <div class="flex items-center space-x-3">
                                 <div class="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden shrink-0">
-                                    <img src="{{ $product->image ?: 'https://via.placeholder.com/80' }}" alt="" class="w-full h-full object-cover">
+                                    <img src="{{ $product->image_url }}" alt="" class="w-full h-full object-cover">
                                 </div>
                                 <div>
                                     <p class="font-medium text-gray-700">{{ $product->name }}</p>

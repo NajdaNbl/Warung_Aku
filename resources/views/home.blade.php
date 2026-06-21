@@ -36,8 +36,12 @@
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
             @forelse($categories as $category)
                 <a href="{{ route('products.index', ['category' => $category->slug]) }}" class="group bg-[#FAF5EB] rounded-2xl p-6 text-center hover:shadow-lg hover:bg-white transition-all duration-300 border border-gray-200/50">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#1B4332] to-[#D4A373] flex items-center justify-center text-white text-2xl font-bold group-hover:scale-110 transition-transform">
-                        {{ substr($category->name, 0, 1) }}
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full overflow-hidden {{ $category->image_url ? '' : 'bg-gradient-to-br from-[#1B4332] to-[#D4A373] flex items-center justify-center text-white text-2xl font-bold' }} group-hover:scale-110 transition-transform">
+                        @if($category->image_url)
+                            <img src="{{ $category->image_url }}" alt="{{ $category->name }}" class="w-full h-full object-cover">
+                        @else
+                            {{ substr($category->name, 0, 1) }}
+                        @endif
                     </div>
                     <h3 class="font-semibold text-[#1B4332] group-hover:text-[#2D6A4F]">{{ $category->name }}</h3>
                     <p class="text-xs text-gray-400 mt-1">{{ $category->active_products_count }} produk</p>

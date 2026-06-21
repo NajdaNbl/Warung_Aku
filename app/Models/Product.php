@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Product extends Model
@@ -67,6 +68,17 @@ class Product extends Model
     public function scopeNewArrival($query)
     {
         return $query->where('is_new_arrival', true);
+    }
+
+    public function getImageUrlAttribute(): string
+    {
+        if (!$this->image) {
+            return 'https://via.placeholder.com/200';
+        }
+        if (str_starts_with($this->image, 'http')) {
+            return $this->image;
+        }
+        return Storage::url($this->image);
     }
 
     public function getPriceFormattedAttribute(): string

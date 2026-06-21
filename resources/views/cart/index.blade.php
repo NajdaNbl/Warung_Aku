@@ -68,13 +68,21 @@
                     <span class="text-2xl font-bold text-[#D4A373]">{{ 'Rp' . number_format($grandTotal, 0, ',', '.') }}</span>
                 </div>
 
-                @guest
                 <div class="border-t border-gray-100 pt-4 mb-4 space-y-3">
                     <p class="text-sm font-medium text-gray-600">Data Pemesan:</p>
-                    <input type="text" form="checkoutForm" name="customer_name" placeholder="Nama lengkap..." required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#D4A373] focus:border-transparent outline-none transition-all text-sm">
-                    <input type="tel" form="checkoutForm" name="customer_phone" placeholder="No. WhatsApp (contoh: 08123456789)" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#D4A373] focus:border-transparent outline-none transition-all text-sm">
+
+                    @guest
+                    <input type="text" form="checkoutForm" name="customer_name" value="{{ old('customer_name') }}" placeholder="Nama lengkap..." required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#D4A373] focus:border-transparent outline-none transition-all text-sm {{ $errors->has('customer_name') ? 'border-red-400' : '' }}">
+                    @error('customer_name') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                    <input type="tel" form="checkoutForm" name="customer_phone" value="{{ old('customer_phone') }}" placeholder="No. WhatsApp (contoh: 08123456789)" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#D4A373] focus:border-transparent outline-none transition-all text-sm {{ $errors->has('customer_phone') ? 'border-red-400' : '' }}">
+                    @error('customer_phone') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                    @endguest
+
+                    <textarea form="checkoutForm" name="customer_address" rows="2" placeholder="Alamat pengiriman (opsional)..." class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#D4A373] focus:border-transparent outline-none transition-all text-sm">{{ old('customer_address') }}</textarea>
+                    @error('customer_address') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+
+                    <textarea form="checkoutForm" name="notes" rows="2" placeholder="Catatan untuk penjual (opsional)..." class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#D4A373] focus:border-transparent outline-none transition-all text-sm">{{ old('notes') }}</textarea>
                 </div>
-                @endguest
 
                 <form id="checkoutForm" action="{{ route('checkout.process') }}" method="POST">
                     @csrf

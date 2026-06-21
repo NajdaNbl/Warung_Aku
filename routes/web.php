@@ -23,6 +23,9 @@ Route::get('/cart/count', [CartController::class, 'count'])->name('cart.count');
 Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
 Route::get('/checkout/success/{order}', [CheckoutController::class, 'success'])->name('checkout.success');
 
+Route::get('/invoice/{order}', [\App\Http\Controllers\InvoiceController::class, 'view'])->name('invoice.view');
+Route::get('/invoice/{order}/pdf', [\App\Http\Controllers\InvoiceController::class, 'pdf'])->name('invoice.pdf');
+
 // Auth Routes
 Route::get('/dashboard', function () {
     return redirect()->route('admin.dashboard');
@@ -32,6 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/orders', [\App\Http\Controllers\OrderHistoryController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [\App\Http\Controllers\OrderHistoryController::class, 'show'])->name('orders.show');
 });
 
 // Admin Routes
@@ -51,6 +57,10 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
     Route::patch('/orders/{order}/status', [\App\Http\Controllers\Admin\OrderController::class, 'updateStatus'])->name('orders.status');
 
     Route::get('/orders/export/csv', [\App\Http\Controllers\Admin\OrderController::class, 'exportCsv'])->name('orders.export');
+
+    Route::resource('/users', \App\Http\Controllers\Admin\UserController::class, [
+        'except' => ['show'],
+    ]);
 
     Route::get('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
     Route::post('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');

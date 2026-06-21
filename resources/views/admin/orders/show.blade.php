@@ -70,6 +70,12 @@
                 </div>
                 @endif
             </div>
+            @if($order->customer_address)
+            <div class="mt-3 text-sm">
+                <span class="text-gray-400">Alamat:</span>
+                <p class="font-medium text-gray-700 mt-1">{{ $order->customer_address }}</p>
+            </div>
+            @endif
         </div>
 
         <div class="border-t border-gray-100 pt-4">

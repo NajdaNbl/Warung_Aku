@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Category extends Model
@@ -23,6 +24,17 @@ class Category extends Model
                 $category->slug = Str::slug($category->name);
             }
         });
+    }
+
+    public function getImageUrlAttribute(): string
+    {
+        if (!$this->image) {
+            return '';
+        }
+        if (str_starts_with($this->image, 'http')) {
+            return $this->image;
+        }
+        return Storage::url($this->image);
     }
 
     public function products(): HasMany

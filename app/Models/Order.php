@@ -12,11 +12,25 @@ class Order extends Model
         'user_id',
         'customer_name',
         'customer_phone',
+        'customer_address',
         'total_price',
         'total_items',
         'notes',
         'status',
     ];
+
+    protected $appends = ['status_label'];
+
+    public function getStatusLabelAttribute(): string
+    {
+        return match($this->status) {
+            'pending' => 'Pending',
+            'processed' => 'Diproses',
+            'completed' => 'Selesai',
+            'cancelled' => 'Dibatalkan',
+            default => ucfirst($this->status),
+        };
+    }
 
     protected $casts = [
         'total_price' => 'decimal:2',
