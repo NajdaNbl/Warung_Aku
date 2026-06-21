@@ -29,12 +29,13 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
-        $todayRevenue = Order::whereDate('created_at', today())->sum('total_price');
+        $todayRevenue = Order::where('status', '!=', 'cancelled')->whereDate('created_at', today())->sum('total_price');
         $todayOrders = Order::whereDate('created_at', today())->count();
 
-        $totalRevenue = Order::sum('total_price');
+        $totalRevenue = Order::where('status', '!=', 'cancelled')->sum('total_price');
 
-        $revenueByDay = Order::where('created_at', '>=', now()->subDays(7))
+        $revenueByDay = Order::where('status', '!=', 'cancelled')
+            ->where('created_at', '>=', now()->subDays(7))
             ->select(DB::raw('DATE(created_at) as date'), DB::raw('SUM(total_price) as revenue'))
             ->groupBy('date')
             ->orderBy('date')

@@ -17,7 +17,7 @@ class OrderController extends Controller
         }
 
         $orders = $query->latest()->paginate(15)->withQueryString();
-        $totalRevenue = Order::sum('total_price');
+        $totalRevenue = Order::where('status', '!=', 'cancelled')->sum('total_price');
 
         $topProducts = \DB::table('order_items')
             ->select('product_name', \DB::raw('SUM(quantity) as total_qty'))
