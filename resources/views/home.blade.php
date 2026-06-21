@@ -7,18 +7,18 @@
 <section class="relative bg-gradient-to-br from-[#1B4332] to-[#2D6A4F] overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 relative z-10">
         <div class="text-center max-w-3xl mx-auto">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight mb-6">
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight mb-4 sm:mb-6">
                 Belanja Mudah di <span class="text-[#D4A373]">Warung Aku</span>
             </h1>
-            <p class="text-lg sm:text-xl text-white/80 mb-8 max-w-lg mx-auto">
+            <p class="text-base sm:text-xl text-white/80 mb-6 sm:mb-8 max-w-lg mx-auto px-4">
                 Kebutuhan harian, makanan, minuman, dan produk pilihan dalam satu tempat.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ route('products.index') }}" class="inline-flex items-center justify-center px-8 py-4 bg-[#D4A373] text-white font-semibold rounded-xl shadow-lg hover:bg-[#2D6A4F] transition-all duration-300">
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
+                <a href="{{ route('products.index') }}" class="inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 bg-[#D4A373] text-white font-semibold rounded-xl shadow-lg hover:bg-[#2D6A4F] transition-all duration-300 text-sm sm:text-base">
                     Belanja Sekarang
-                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
                 </a>
-                <a href="#produk-terbaru" class="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                <a href="#produk-terbaru" class="inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 text-sm sm:text-base">
                     Lihat Produk
                 </a>
             </div>
@@ -33,17 +33,17 @@
             <h2 class="text-3xl sm:text-4xl font-bold text-[#1B4332] mb-4">Kategori Produk</h2>
             <p class="text-gray-500 max-w-2xl mx-auto">Temukan berbagai kebutuhan Anda dalam kategori berikut</p>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 sm:gap-4">
             @forelse($categories as $category)
-                <a href="{{ route('products.index', ['category' => $category->slug]) }}" class="group bg-[#FAF5EB] rounded-2xl p-6 text-center hover:shadow-lg hover:bg-white transition-all duration-300 border border-gray-200/50">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full overflow-hidden {{ $category->image_url ? '' : 'bg-gradient-to-br from-[#1B4332] to-[#D4A373] flex items-center justify-center text-white text-2xl font-bold' }} group-hover:scale-110 transition-transform">
+                <a href="{{ route('products.index', ['category' => $category->slug]) }}" class="group bg-[#FAF5EB] rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center hover:shadow-lg hover:bg-white transition-all duration-300 border border-gray-200/50">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-4 rounded-full overflow-hidden {{ $category->image_url ? '' : 'bg-gradient-to-br from-[#1B4332] to-[#D4A373] flex items-center justify-center text-white text-lg sm:text-2xl font-bold' }} group-hover:scale-110 transition-transform">
                         @if($category->image_url)
                             <img src="{{ $category->image_url }}" alt="{{ $category->name }}" class="w-full h-full object-cover">
                         @else
                             {{ substr($category->name, 0, 1) }}
                         @endif
                     </div>
-                    <h3 class="font-semibold text-[#1B4332] group-hover:text-[#2D6A4F]">{{ $category->name }}</h3>
+                    <h3 class="text-xs sm:text-sm font-semibold text-[#1B4332] group-hover:text-[#2D6A4F]">{{ $category->name }}</h3>
                     <p class="text-xs text-gray-400 mt-1">{{ $category->active_products_count }} produk</p>
                 </a>
             @empty

@@ -38,7 +38,7 @@
                         </div>
                     </div>
                 @else
-                    {{-- Pembeli gak perlu login --}}
+                    <a href="{{ route('login') }}" class="hidden md:inline-flex text-sm font-medium text-gray-500 hover:text-[#1B4332] transition-colors">Masuk</a>
                 @endauth
                 <button @click="open = !open" class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -49,22 +49,23 @@
             </div>
         </div>
     </div>
-    <div :class="{'block': open, 'hidden': !open}" class="hidden md:hidden bg-white border-t">
-        <div class="px-4 py-3 space-y-2">
-            <a href="{{ route('home') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#1B4332]">Beranda</a>
-            <a href="{{ route('products.index') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#1B4332]">Produk</a>
-            <a href="{{ route('home') }}#tentang" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#1B4332]">Tentang</a>
+    <div :class="{'block': open, 'hidden': !open}" class="hidden md:hidden bg-white border-t shadow-lg">
+        <div class="px-4 py-3 space-y-1">
+            <a href="{{ route('home') }}" class="block px-3 py-2.5 text-sm font-medium text-gray-600 hover:text-[#1B4332] hover:bg-gray-50 rounded-lg transition-colors">Beranda</a>
+            <a href="{{ route('products.index') }}" class="block px-3 py-2.5 text-sm font-medium text-gray-600 hover:text-[#1B4332] hover:bg-gray-50 rounded-lg transition-colors">Produk</a>
+            <a href="{{ route('home') }}#tentang" class="block px-3 py-2.5 text-sm font-medium text-gray-600 hover:text-[#1B4332] hover:bg-gray-50 rounded-lg transition-colors">Tentang</a>
             @auth
-                <hr class="my-2">
-                <a href="{{ route('admin.dashboard') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#1B4332]">Dashboard</a>
-                <a href="{{ route('orders.index') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#1B4332]">Pesanan Saya</a>
-                <a href="{{ route('profile.edit') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#1B4332]">Edit Profil</a>
+                <hr class="my-2 border-gray-100">
+                <a href="{{ route('orders.index') }}" class="block px-3 py-2.5 text-sm font-medium text-gray-600 hover:text-[#1B4332] hover:bg-gray-50 rounded-lg transition-colors">Pesanan Saya</a>
+                <a href="{{ route('admin.dashboard') }}" class="block px-3 py-2.5 text-sm font-medium text-gray-600 hover:text-[#1B4332] hover:bg-gray-50 rounded-lg transition-colors">Dashboard</a>
+                <a href="{{ route('profile.edit') }}" class="block px-3 py-2.5 text-sm font-medium text-gray-600 hover:text-[#1B4332] hover:bg-gray-50 rounded-lg transition-colors">Edit Profil</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="block w-full text-left py-2 text-sm font-medium text-gray-600 hover:text-[#1B4332]">Logout</button>
+                    <button type="submit" class="block w-full text-left px-3 py-2.5 text-sm font-medium text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors">Logout</button>
                 </form>
             @else
-                {{-- Pembeli gak perlu login --}}
+                <hr class="my-2 border-gray-100">
+                <a href="{{ route('login') }}" class="block px-3 py-2.5 text-sm font-medium text-[#1B4332] hover:bg-gray-50 rounded-lg transition-colors font-semibold">Masuk</a>
             @endauth
         </div>
     </div>

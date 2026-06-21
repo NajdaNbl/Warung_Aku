@@ -15,19 +15,20 @@
             </div>
         @endif
     </div>
-    <div class="p-4">
+    <div class="p-3 sm:p-4">
         <p class="text-xs text-gray-400 mb-1">{{ $product->category->name ?? 'Kategori' }}</p>
         <h3 class="font-semibold text-[#1B4332] text-sm mb-2 line-clamp-2">{{ $product->name }}</h3>
-        <p class="text-lg font-bold text-[#D4A373] mb-4">{{ $product->price_formatted }}</p>
+        <p class="text-base sm:text-lg font-bold text-[#D4A373] mb-3 sm:mb-4">{{ $product->price_formatted }}</p>
         <div class="flex gap-2">
-            <a href="{{ route('products.show', $product->slug) }}" class="flex-1 text-center text-sm font-medium text-gray-600 border border-gray-200 rounded-lg py-2 hover:bg-gray-50 transition-colors">
+            <a href="{{ route('products.show', $product->slug) }}" class="flex-1 text-center text-xs sm:text-sm font-medium text-gray-600 border border-gray-200 rounded-lg py-2 hover:bg-gray-50 transition-colors">
                 Detail
             </a>
             @if($product->stock > 0)
                 <form action="{{ route('cart.add', $product) }}" method="POST" class="flex-1">
                     @csrf
-                    <button type="submit" class="w-full text-sm font-medium text-white rounded-lg py-2 transition-all duration-300 hover:opacity-90" style="background-color: #1B4332;">
-                        + Keranjang
+                    <button type="submit" class="w-full text-xs sm:text-sm font-medium text-white rounded-lg py-2.5 sm:py-2 transition-all duration-300 hover:opacity-90 flex items-center justify-center gap-1" style="background-color: #1B4332;">
+                        <svg class="w-4 h-4 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>
+                        <span class="hidden sm:inline">+ Keranjang</span>
                     </button>
                 </form>
             @endif

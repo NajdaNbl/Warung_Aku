@@ -59,12 +59,12 @@
                         <div class="flex items-center space-x-4">
                             <label class="text-sm font-medium text-gray-600">Jumlah:</label>
                             <div class="flex items-center border border-gray-200 rounded-xl overflow-hidden">
-                                <button type="button" onclick="decrementQty()" class="px-4 py-2 hover:bg-gray-50 transition-colors text-gray-500">-</button>
-                                <input type="number" name="quantity" id="qtyInput" value="1" min="1" max="{{ $product->stock }}" class="w-16 text-center py-2 border-x border-gray-200 outline-none text-sm font-medium" readonly>
-                                <button type="button" onclick="incrementQty({{ $product->stock }})" class="px-4 py-2 hover:bg-gray-50 transition-colors text-gray-500">+</button>
+                                <button type="button" onclick="decrementQty()" class="px-4 sm:px-4 py-2.5 sm:py-2 hover:bg-gray-50 transition-colors text-gray-500 text-lg sm:text-base font-medium min-w-[44px] flex items-center justify-center">-</button>
+                                <input type="number" name="quantity" id="qtyInput" value="1" min="1" max="{{ $product->stock }}" class="w-16 text-center py-2.5 sm:py-2 border-x border-gray-200 outline-none text-sm font-medium" readonly>
+                                <button type="button" onclick="incrementQty({{ $product->stock }})" class="px-4 sm:px-4 py-2.5 sm:py-2 hover:bg-gray-50 transition-colors text-gray-500 text-lg sm:text-base font-medium min-w-[44px] flex items-center justify-center">+</button>
                             </div>
                         </div>
-                        <button type="submit" class="w-full sm:w-auto px-8 py-4 bg-[#1B4332] text-white font-semibold rounded-xl hover:bg-[#2D6A4F] transition-all duration-300 flex items-center justify-center space-x-2">
+                        <button type="submit" class="w-full px-6 sm:px-8 py-4 bg-[#1B4332] text-white font-semibold rounded-xl hover:bg-[#2D6A4F] transition-all duration-300 flex items-center justify-center space-x-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" /></svg>
                             <span>Tambah ke Keranjang</span>
                         </button>
@@ -78,9 +78,9 @@
         </div>
 
         @if($relatedProducts->isNotEmpty())
-            <section class="mt-16">
-                <h2 class="text-2xl font-bold text-[#1B4332] mb-8">Produk Terkait</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <section class="mt-10 sm:mt-16">
+                <h2 class="text-xl sm:text-2xl font-bold text-[#1B4332] mb-4 sm:mb-8">Produk Terkait</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
                     @foreach($relatedProducts as $related)
                         @include('partials.product-card', ['product' => $related])
                     @endforeach
