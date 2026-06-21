@@ -18,4 +18,14 @@ class Setting extends Model
     {
         static::updateOrCreate(['key' => $key], ['value' => $value]);
     }
+
+    public static function getWaNumber(): string
+    {
+        $number = static::getValue('wa_number', '6281235331414');
+        $number = preg_replace('/[^0-9]/', '', $number);
+        if (str_starts_with($number, '0')) {
+            $number = '62' . substr($number, 1);
+        }
+        return $number;
+    }
 }

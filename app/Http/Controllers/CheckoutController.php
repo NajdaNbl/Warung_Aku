@@ -108,7 +108,7 @@ class CheckoutController extends Controller
 
         WhatsAppService::notifyAdmin($notifMessage);
 
-        $waNumber = Setting::getValue('wa_number') ?? '621235331414';
+        $waNumber = Setting::getWaNumber();
         $encodedMessage = urlencode($message);
         $waUrl = "https://wa.me/{$waNumber}?text={$encodedMessage}";
 
