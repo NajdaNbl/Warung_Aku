@@ -26,7 +26,7 @@
                     @endphp
                     <div class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-100 flex flex-col sm:flex-row gap-4 items-start">
                         <div class="w-full sm:w-24 h-24 rounded-xl overflow-hidden bg-gray-100 shrink-0">
-                            <img src="{{ $item['image'] ?: 'https://via.placeholder.com/150' }}" alt="{{ $item['name'] }}" class="w-full h-full object-cover">
+                            <img src="{{ $item['image'] ?: asset('images/products/placeholder.svg') }}" alt="{{ $item['name'] }}" class="w-full h-full object-cover">
                         </div>
                         <div class="flex-1 min-w-0">
                             <h3 class="font-semibold text-[#1B4332]">{{ $item['name'] }}</h3>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" rx="8" fill="#f3f4f6"/>
+  <g transform="translate(50,40)">
+    <rect x="10" y="40" width="80" height="70" rx="8" fill="#d1d5db"/>
+    <path d="M20 40 L30 15 L70 15 L80 40" stroke="#9ca3af" stroke-width="4" fill="none"/>
+    <rect x="35" y="60" width="30" height="25" rx="4" fill="#9ca3af"/>
+    <text x="100" y="75" font-family="Arial,sans-serif" font-size="14" fill="#9ca3af" text-anchor="middle">Product</text>
+  </g>
+</svg>

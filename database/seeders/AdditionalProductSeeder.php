@@ -12,6 +12,16 @@ class AdditionalProductSeeder extends Seeder
     {
         $categories = Category::all()->keyBy('name');
 
+        $catImage = fn($cat) => match ($cat) {
+            'Beras & Minyak' => 'images/products/beras.svg',
+            'Gula & Kopi' => 'images/products/gula.svg',
+            'Mie & Bumbu' => 'images/products/mie.svg',
+            'Sabun & Deterjen' => 'images/products/sabun.svg',
+            'Minuman' => 'images/products/minuman.svg',
+            'Camilan' => 'images/products/camilan.svg',
+            default => 'images/products/placeholder.svg',
+        };
+
         $products = [
             // Beras
             [
@@ -123,7 +133,7 @@ class AdditionalProductSeeder extends Seeder
                 'description' => $product['description'],
                 'price' => $product['price'],
                 'stock' => $product['stock'],
-                'image' => null,
+                'image' => $catImage($product['category']),
                 'is_best_seller' => $product['is_best_seller'],
                 'is_new_arrival' => $product['is_new_arrival'],
                 'is_active' => true,

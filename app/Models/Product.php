@@ -73,10 +73,13 @@ class Product extends Model
     public function getImageUrlAttribute(): string
     {
         if (!$this->image) {
-            return 'https://via.placeholder.com/200';
+            return asset('images/products/placeholder.svg');
         }
         if (str_starts_with($this->image, 'http')) {
             return $this->image;
+        }
+        if (str_starts_with($this->image, 'images/')) {
+            return asset($this->image);
         }
         return Storage::url($this->image);
     }
